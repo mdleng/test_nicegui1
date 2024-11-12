@@ -11,4 +11,4 @@ with ui.column().bind_visibility_from(v, 'value'):
     ui.toggle({1: 'A', 2: 'B', 3: 'C'}).bind_value(demo, 'number')
     ui.number().bind_value(demo, 'number')
 
-ui.run()
+ui.run(host='127.0.0.1')
