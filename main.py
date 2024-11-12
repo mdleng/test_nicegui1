@@ -1,10 +1,14 @@
-#!/usr/bin/env python3
-from nicegui import app, ui
+from nicegui import ui
 
-app.add_static_files('/stl', 'static')
+class Demo:
+    def __init__(self):
+        self.number = 1
 
-with ui.scene(width=1024, height=800) as scene:
-    scene.spot_light(distance=100, intensity=0.1).move(-10, 0, 10)
-    scene.stl('/stl/pikachu.stl').move(x=-0.5).scale(0.06)
+demo = Demo()
+v = ui.checkbox('visible', value=True)
+with ui.column().bind_visibility_from(v, 'value'):
+    ui.slider(min=1, max=3).bind_value(demo, 'number')
+    ui.toggle({1: 'A', 2: 'B', 3: 'C'}).bind_value(demo, 'number')
+    ui.number().bind_value(demo, 'number')
 
-ui.run(host='0.0.0.0')
+ui.run()
